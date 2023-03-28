@@ -68,7 +68,7 @@ export function DashboardNavbar() {
             </Typography>
           </Breadcrumbs>
           <Typography variant="h6" color="blue-gray">
-            {page}
+            {page} - Pakistan Karate Federation 
           </Typography>
         </div>
         <div className="flex items-center">
