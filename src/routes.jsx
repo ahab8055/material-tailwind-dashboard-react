@@ -21,6 +21,7 @@ import {
 import Player from "./pages/dashboard/player";
 import Record from "./pages/dashboard/record";
 import Draws from "./pages/dashboard/draws";
+import PlayerDetail from "./pages/dashboard/playerDetail";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -54,12 +55,12 @@ export const routes = [
         path: "/draws",
         element: <Draws />,
       },
-      {
-        icon: <UserGroupIcon {...icon} />,
-        name: "tournament",
-        path: "/tournament",
-        element: <Notifications />,
-      },
+      // {
+      //   icon: <UserGroupIcon {...icon} />,
+      //   name: "tournament",
+      //   path: "/tournament",
+      //   element: <Notifications />,
+      // },
       {
         icon: <UserPlusIcon {...icon} />,
         name: "player",

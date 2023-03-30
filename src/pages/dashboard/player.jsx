@@ -10,7 +10,9 @@ import {
   Option,
   IconButton,
   Input,
-  Button
+  Button,
+  Dialog,
+  CardFooter
 } from "@material-tailwind/react";
 import {
   EyeIcon,
@@ -25,8 +27,12 @@ import {
   TrashIcon
 } from "@heroicons/react/24/outline";
 import { projectsTableData } from "@/data";
+import { useNavigate } from "react-router-dom";
 
 export function Player() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen((cur) => !cur);
+  const navigate = useNavigate()
   return (
     <div className="mt-12">
       <div className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3">
@@ -56,7 +62,7 @@ export function Player() {
               />
             </div>
             <div className="mr-auto md:mr-4 md:w-56 object-right">
-              <Button variant="gradient" size="sm"> Add Player</Button>
+              <Button variant="gradient" size="sm" onClick={handleOpen}> Add Player</Button>
             </div>
           </CardHeader>
           <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
@@ -132,7 +138,7 @@ export function Player() {
                         </td>
                         <td className={className}>
                           <div className="flex w-10/12 gap-2">
-                            <IconButton variant="text">
+                            <IconButton variant="text" onClick={()=>navigate("/player/1")}>
                               <EyeIcon className="h-5 w-5 text-inherit" />
                             </IconButton>
                             <IconButton variant="text">
@@ -152,6 +158,39 @@ export function Player() {
           </CardBody>
         </Card>
       </div>
+      <Dialog
+        size="xs"
+        open={open}
+        handler={handleOpen}
+        className="bg-transparent shadow-none"
+      >
+        <Card className="mx-auto w-full max-w-[24rem]">
+          <CardHeader
+            variant="gradient"
+            color="blue"
+            className="mb-4 grid h-28 place-items-center"
+          >
+            <Typography variant="h3" color="white">
+              Add Player
+            </Typography>
+          </CardHeader>
+          <CardBody className="flex flex-col gap-4">
+            <Input label="Name" size="lg" />
+            <Input label="Email" size="lg" />
+            <Input label="Player ID" size="lg" />
+            <Select label="Gender">
+                <Option>Male</Option>
+                <Option>Female</Option>
+              </Select>
+            <Input label="Password" size="lg" />
+          </CardBody>
+          <CardFooter className="pt-0">
+            <Button variant="gradient" onClick={handleOpen} fullWidth>
+              Add Player
+            </Button>
+          </CardFooter>
+        </Card>
+      </Dialog>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -11,6 +11,7 @@ import {
 } from "@material-tailwind/react";
 
 export function SignIn() {
+  const navigate = useNavigate()
   return (
     <>
       <img
@@ -37,7 +38,7 @@ export function SignIn() {
             </div>
           </CardBody>
           <CardFooter className="pt-0">
-            <Button variant="gradient" fullWidth>
+            <Button variant="gradient" fullWidth onClick={()=>navigate("/dashboard/home")}>
               Sign In
             </Button>
             <Typography variant="small" className="mt-6 flex justify-center">
