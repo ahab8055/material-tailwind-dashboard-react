@@ -18,6 +18,9 @@ import {
   SignIn, 
   SignUp 
 } from "@/pages/auth";
+import Player from "./pages/dashboard/player";
+import Record from "./pages/dashboard/record";
+import Draws from "./pages/dashboard/draws";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -43,13 +46,13 @@ export const routes = [
         icon: <PresentationChartLineIcon {...icon} />,
         name: "record",
         path: "/record",
-        element: <Profile />,
+        element: <Record />,
       },
       {
         icon: <TableCellsIcon {...icon} />,
         name: "draws",
         path: "/draws",
-        element: <Tables />,
+        element: <Draws />,
       },
       {
         icon: <UserGroupIcon {...icon} />,
@@ -61,7 +64,7 @@ export const routes = [
         icon: <UserPlusIcon {...icon} />,
         name: "player",
         path: "/player",
-        element: <Scoreboard />,
+        element: <Player />,
       },
       // {
       //   icon: <UserCircleIcon {...icon} />,

@@ -8,16 +8,19 @@ import {
   Tooltip,
   Select,
   Option,
-  IconButton
+  IconButton,
+  Input
 } from "@material-tailwind/react";
 import {
   EyeIcon,
   PencilSquareIcon,
-  PlayCircleIcon
+  PlayCircleIcon,
+  MagnifyingGlassIcon,
+  AdjustmentsVerticalIcon
 } from "@heroicons/react/24/outline";
 import { projectsTableData } from "@/data";
 
-export function Scoreboard() {
+export function Record() {
   return (
     <div className="mt-12">
       <div className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3">
@@ -30,52 +33,24 @@ export function Scoreboard() {
           >
             <div>
               <Typography variant="h6" color="blue-gray" className="mb-1">
-                Scoreboard
+                Record
               </Typography>
               <Typography
                 variant="small"
                 className="flex items-center gap-1 font-normal text-blue-gray-600"
               >
-                <strong>30 matches</strong>
+                <strong>30 Tournaments</strong>
               </Typography>
             </div>
-            <div className="mr-auto md:mr-0 md:w-56">
-              <Select
-                label="Select Category"
-                className=""
-              >
-                <Option>Male</Option>
-                <Option>Female</Option>
-              </Select>
+            <div className="mr-auto md:mr-0 md:w-74">
+              <Input type="text" label="Search" icon={<MagnifyingGlassIcon />} />
             </div>
-            <div className="mr-auto md:mr-4 md:w-56">
-              <Select label="Select Fight Style">
-                <Option>Kumite</Option>
-                <Option>Kata</Option>
-              </Select>
-            </div>
-            {/* <Menu placement="left-start">
-              <MenuHandler>
-                <IconButton size="sm" variant="text" color="blue-gray">
-                  <EllipsisVerticalIcon
-                    strokeWidth={3}
-                    fill="currenColor"
-                    className="h-6 w-6"
-                  />
-                </IconButton>
-              </MenuHandler>
-              <MenuList>
-                <MenuItem>Action</MenuItem>
-                <MenuItem>Another Action</MenuItem>
-                <MenuItem>Something else here</MenuItem>
-              </MenuList>
-            </Menu> */}
           </CardHeader>
           <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
             <table className="w-full min-w-[640px] table-auto">
               <thead>
                 <tr>
-                  {["weights", "players", "created date", "action"].map(
+                  {["tournament", "matches", "start date","end date", "action"].map(
                     (el) => (
                       <th
                         key={el}
@@ -111,24 +86,26 @@ export function Scoreboard() {
                               color="blue-gray"
                               className="font-bold"
                             >
-                              - 60 kg
+                              Al-KAbir Punjab Karate League
                             </Typography>
                           </div>
                         </td>
                         <td className={className}>
-                          {members.map(({ img, name }, key) => (
-                            <Tooltip key={name} content={name}>
-                              <Avatar
-                                src={img}
-                                alt={name}
-                                size="xs"
-                                variant="circular"
-                                className={`cursor-pointer border-2 border-white ${
-                                  key === 0 ? "" : "-ml-2.5"
-                                }`}
-                              />
-                            </Tooltip>
-                          ))}
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-bold"
+                          >
+                            16
+                          </Typography>
+                        </td>
+                        <td className={className}>
+                          <Typography
+                            variant="small"
+                            className="text-xs font-medium text-blue-gray-600"
+                          >
+                            24/04/2023
+                          </Typography>
                         </td>
                         <td className={className}>
                           <Typography
@@ -141,13 +118,10 @@ export function Scoreboard() {
                         <td className={className}>
                           <div className="flex w-10/12 gap-2">
                             <IconButton variant="text">
-                              <EyeIcon className="h-5 w-5 text-inherit" />
-                            </IconButton>
-                            <IconButton variant="text">
                               <PencilSquareIcon className="h-5 w-5 text-inherit" />
                             </IconButton>
                             <IconButton variant="text">
-                              <PlayCircleIcon className="h-5 w-5 text-inherit" />
+                              <AdjustmentsVerticalIcon className="h-5 w-5 text-inherit" />
                             </IconButton>
                           </div>
                         </td>
@@ -164,4 +138,4 @@ export function Scoreboard() {
   );
 }
 
-export default Scoreboard;
+export default Record;
