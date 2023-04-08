@@ -36,6 +36,7 @@ export const chartsConfig = {
       },
     },
   },
+
   grid: {
     show: true,
     borderColor: "#ffffff40",

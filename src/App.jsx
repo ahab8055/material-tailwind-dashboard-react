@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Dashboard, Auth } from "@/layouts";
 import PlayerDetail from "./pages/dashboard/playerDetail";
+import "./style.css"
 
 function App() {
   return (

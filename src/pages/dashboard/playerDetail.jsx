@@ -262,6 +262,8 @@ export function PlayerDetail() {
           </div>
         </CardBody>
       </Card>
+
+      
     </>
   );
 }
