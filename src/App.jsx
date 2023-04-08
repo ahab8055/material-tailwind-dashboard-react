@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Dashboard, Auth } from "@/layouts";
 import PlayerDetail from "./pages/dashboard/playerDetail";
 import { useEffect, useState } from "react";
+import "./style.css"
 
 function App() {
   const [token, setToken] = useState();
@@ -10,7 +11,7 @@ function App() {
     let token = localStorage.getItem("token");
     setToken(token);
   }, []);
-  
+
   return (
     <Routes>
       {!token ? (
