@@ -4,8 +4,7 @@ import {
   Button,
   IconButton,
   Switch,
-  Typography,
-  Chip,
+  Typography
 } from "@material-tailwind/react";
 import {
   useMaterialTailwindController,
@@ -72,7 +71,7 @@ export function Configurator() {
       <div className="flex items-start justify-between px-6 pt-8 pb-6">
         <div>
           <Typography variant="h5" color="blue-gray">
-            Dashboard Configurator
+            Dashboard Configor
           </Typography>
           <Typography className="font-normal text-blue-gray-600">
             See our dashboard options.

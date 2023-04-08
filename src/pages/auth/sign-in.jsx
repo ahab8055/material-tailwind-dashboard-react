@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -9,9 +9,26 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
+import axios from "axios";
+import { useState } from "react";
 
 export function SignIn() {
-  const navigate = useNavigate()
+  const [data, setData] = useState();
+
+  const handleSignIn = () =>{
+    axios.post("http://localhost:4000/v1/auth/sign-in",data).then(res=>{
+      localStorage.setItem('token',res.data.token);
+      window.location.reload();
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
+
+  const handleChange = (event) =>{
+    const { name, value } = event.target;
+    setData({...data,[name]:value})
+  }
+
   return (
     <>
       <img
@@ -31,14 +48,14 @@ export function SignIn() {
             </Typography>
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
-            <Input type="email" label="Email" size="lg" />
-            <Input type="password" label="Password" size="lg" />
+            <Input type="email" label="Email" size="lg" name="email" onChange={handleChange} />
+            <Input type="password" label="Password" size="lg" name="password" onChange={handleChange} />
             <div className="-ml-2.5">
               <Checkbox label="Remember Me" />
             </div>
           </CardBody>
           <CardFooter className="pt-0">
-            <Button variant="gradient" fullWidth onClick={()=>navigate("/dashboard/home")}>
+            <Button variant="gradient" fullWidth onClick={handleSignIn}>
               Sign In
             </Button>
             <Typography variant="small" className="mt-6 flex justify-center">

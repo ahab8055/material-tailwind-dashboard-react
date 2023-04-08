@@ -10,9 +10,6 @@ import {
 import { 
   Home,
   Scoreboard, 
-  Profile, 
-  Tables, 
-  Notifications 
 } from "@/pages/dashboard";
 import { 
   SignIn, 
@@ -21,7 +18,6 @@ import {
 import Player from "./pages/dashboard/player";
 import Record from "./pages/dashboard/record";
 import Draws from "./pages/dashboard/draws";
-import PlayerDetail from "./pages/dashboard/playerDetail";
 import Tournament from "./pages/dashboard/tournament";
 
 const icon = {
