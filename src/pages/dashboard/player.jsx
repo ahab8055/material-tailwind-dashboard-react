@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Typography,
   Card,
   CardHeader,
   CardBody,
-  Avatar,
-  Tooltip,
   Select,
   Option,
   IconButton,
@@ -17,22 +15,58 @@ import {
 import {
   EyeIcon,
   PencilSquareIcon,
-  PlayCircleIcon,
   MagnifyingGlassIcon,
-  AdjustmentsVerticalIcon,
-  PrinterIcon,
-  DocumentTextIcon,
-  CheckIcon,
-  XMarkIcon,
   TrashIcon
 } from "@heroicons/react/24/outline";
 import { projectsTableData } from "@/data";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export function Player() {
+
   const [open, setOpen] = React.useState(false);
+  const [data, setData] = React.useState({})
   const handleOpen = () => setOpen((cur) => !cur);
-  const navigate = useNavigate()
+  const [playerList,setPlayerList] = React.useState([]);
+  const navigate = useNavigate();
+
+  const fetchPlayers = () =>{
+    const token = localStorage.getItem('token')
+    axios.get("http://localhost:4000/v1/player",{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res=>{
+      setPlayerList(res.data.players)
+    }).catch(err=>{
+      console.log(err);
+    })
+  }
+
+  const handleSubmit = () => {
+    const token = localStorage.getItem('token')
+    axios.post("http://localhost:4000/v1/player",data,{
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res=>{
+      setOpen(false);
+      fetchPlayers()
+    }).catch(err=>{
+      console.log(err);
+    })
+    console.log({data})
+  }
+
+  const handleChange = (event) =>{
+    const { name, value } = event.target;
+    setData({...data,[name]:value})
+  }
+
+  useEffect(()=>{
+    fetchPlayers()
+  },[])
+
   return (
     <div className="mt-12">
       <div className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3">
@@ -87,8 +121,8 @@ export function Player() {
                 </tr>
               </thead>
               <tbody>
-                {projectsTableData.map(
-                  ({ img, name, members, budget, completion }, key) => {
+                {playerList.map(
+                  ({ pkfId, _id, name, totalMatches, user, completion }, key) => {
                     const className = `py-3 px-5 ${
                       key === projectsTableData.length - 1
                         ? ""
@@ -96,7 +130,7 @@ export function Player() {
                     }`;
 
                     return (
-                      <tr key={name}>
+                      <tr key={_id}>
                         <td className={className}>
                           <div className="flex items-center gap-4">
                             {/* <Avatar src={img} alt={name} size="sm" /> */}
@@ -105,7 +139,7 @@ export function Player() {
                               color="blue-gray"
                               className="font-bold"
                             >
-                              00-02002-0333
+                              {pkfId}
                             </Typography>
                           </div>
                         </td>
@@ -115,7 +149,7 @@ export function Player() {
                             color="blue-gray"
                             className="font-bold"
                           >
-                            Hamza
+                            {name}
                           </Typography>
                         </td>
                         <td className={className}>
@@ -124,7 +158,7 @@ export function Player() {
                             color="blue-gray"
                             className="font-bold"
                           >
-                            20
+                            {totalMatches}
                           </Typography>
                         </td>
                         <td className={className}>
@@ -133,7 +167,7 @@ export function Player() {
                             color="blue-gray"
                             className="font-bold"
                           >
-                            Male
+                            {user?.gender}
                           </Typography>
                         </td>
                         <td className={className}>
@@ -175,17 +209,17 @@ export function Player() {
             </Typography>
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
-            <Input label="Name" size="lg" />
-            <Input label="Email" size="lg" />
-            <Input label="Player ID" size="lg" />
-            <Select label="Gender">
-                <Option>Male</Option>
-                <Option>Female</Option>
+            <Input label="Name" size="lg" name="name" onChange={handleChange} />
+            <Input label="Email" size="lg" name="email" onChange={handleChange} />
+            <Input label="Player ID" size="lg" name="playerId" onChange={handleChange} />
+            <Select label="Gender" onChange={(value)=>handleChange({target:{name: "gender",value}})}>
+                <Option value="MALE" >Male</Option>
+                <Option value="FEMALE">Female</Option>
               </Select>
-            <Input label="Password" size="lg" />
+            <Input label="Password" size="lg" type="password" name="password" onChange={handleChange} />
           </CardBody>
           <CardFooter className="pt-0">
-            <Button variant="gradient" onClick={handleOpen} fullWidth>
+            <Button variant="gradient" onClick={handleSubmit} fullWidth>
               Add Player
             </Button>
           </CardFooter>
