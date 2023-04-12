@@ -4,15 +4,18 @@ import {
   Card,
   CardBody,
   Button,
-  Tooltip,
-
   CardFooter,
-  avatar,
-  container,
-  
+  TabsHeader,
+  Tab,
+  Tabs,
 } from "@material-tailwind/react";
-import { projectsData } from "@/data";
-import { Container } from "@material-tailwind/react";
+import {
+  HomeIcon,
+  ChatBubbleLeftEllipsisIcon,
+  Cog6ToothIcon,
+  PencilIcon,
+  ArrowUpIcon,
+} from "@heroicons/react/24/solid";
 export function Home() {
   return (
     <div className="mt-12">
@@ -26,12 +29,12 @@ export function Home() {
                     Create New Tournaments
                   </b>
                 </div>
-                <div className="flex flex-row items-start justify-start text-[16.51px]">
-                  <div className="relative inline-block w-[566.19px] shrink-0 leading-[29.13px]">
+                <div className="flex flex-row items-start justify-start text-[16.51px] w-[400.19px]">
+                  <div className="relative inline-block w-[400.19px] shrink-0 leading-[29.13px]">
                     <p className="m-0">
                    <span className="highlight" color="pink"> For creating</span> the Tournament of the respected event or organization! 
                     </p>
-                    <p className="m-0">
+                    <p className="m-0  " >
                       By purchasing this account, special features will be
                       activated for you that you will  <span className="highlight" color="pink"> For creating</span>be amazed to see!
                     </p>
@@ -48,7 +51,7 @@ export function Home() {
               </div>
               <div className="flex flex-row items-start justify-start">
                 <img
-                  className="relative h-[396.51px] w-[250px] shrink-0"
+                  className="relative h-[396.51px] w-[500px] shrink-0 border-solid border-2 border-black-600 scale-75 transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-80 hover:bg-indigo-200 duration-300 rounded-lg" 
                   alt=""
                   src="/img/karate.jpg"
                 />
@@ -92,9 +95,35 @@ export function Home() {
           )
         )}
       </div> */}
-  <div className="container">
-    <div className="row">
-  <CardBody className="py-0 px-1 col-4">
+      <div className="container flex">
+  <div className="item" >
+    <CardBody color="pink" shadow={true} className="py-0 px-1" >
+                <Typography
+                  variant="small"
+                  className="font-normal text-blue-gray-500"
+                >
+                 Tournament 
+                </Typography>
+                <Typography
+                  variant="h5"
+                  color="blue-gray"
+                  className="mt-1 mb-2"
+                >
+                  Al-KAbir Punjab Karate League 
+                </Typography>
+                <Typography
+                  variant="small"
+                  className="font-normal text-blue-gray-500"
+                >
+                  25-03-2023 | Punjab
+                </Typography>
+              </CardBody>
+              <CardFooter className="mt-6 flex items-center justify-between py-0 px-1">
+                  <Button variant="outlined" size="sm">
+                    Results
+                  </Button>
+              </CardFooter></div>
+  <div className="item"><CardBody className="py-0 px-1">
                 <Typography
                   variant="small"
                   className="font-normal text-blue-gray-500"
@@ -119,8 +148,8 @@ export function Home() {
                   <Button variant="outlined" size="sm">
                     Results
                   </Button>
-              </CardFooter>
-              <CardBody className="py-0 px-1 col-4">
+              </CardFooter></div>
+  <div className="item"><CardBody className="py-0 px-1">
                 <Typography
                   variant="small"
                   className="font-normal text-blue-gray-500"
@@ -145,41 +174,38 @@ export function Home() {
                   <Button variant="outlined" size="sm">
                     Results
                   </Button>
-              </CardFooter>
-              <CardBody className="py-0 px-1 col-4">
-                <Typography
-                  variant="small"
-                  className="font-normal text-blue-gray-500"
-                >
-                  Tournament 
-                </Typography>
-                <Typography
-                  variant="h5"
-                  color="blue-gray"
-                  className="mt-1 mb-2"
-                >
-                  Al-KAbir Punjab Karate League 
-                </Typography>
-                <Typography
-                  variant="small"
-                  className="font-normal text-blue-gray-500"
-                >
-                  25-03-2023 | Punjab
-                </Typography>
-              </CardBody>
-              <CardFooter className="mt-6 flex items-center justify-between py-0 px-1">
-                  <Button variant="outlined" size="sm">
-                    Results
-                  </Button>
-              </CardFooter>
+              </CardFooter></div>
+</div>
+{/* <div className="w-96">
+              <Tabs value="app">
+                <TabsHeader>
+                  <Tab value="app">
+                    <HomeIcon className="-mt-1  inline-block h-5 w-5" />
+                    App
+                    desc: `It really matters and then like it really doesn't matter.
+      What matters `,
+                  </Tab>
+                  
+                  <Tab value="message">
+                    <ChatBubbleLeftEllipsisIcon className="-mt-0.5 mr-2 inline-block h-5 w-5" />
+                    Message
+                  </Tab>
+                  <Tab value="settings">
+                    <Cog6ToothIcon className="-mt-1 mr-2 inline-block h-5 w-5" />
+                    Settings
+                  </Tab>
+                </TabsHeader>
+              </Tabs>
+            </div> */}
+
+
+            
   </div>
-    </div>
-   
-    </div>
-    
+
+
+
+
+
   );
-  
-}
-
-
+  }
 export default Home;

@@ -103,7 +103,7 @@ export function Player() {
             <table className="w-full min-w-[640px] table-auto">
               <thead>
                 <tr>
-                  {["player id", "player name","matches","gender", "action"].map(
+                  {["player id", "player name","matches","gender","department","team" ,"action"].map(
                     (el) => (
                       <th
                         key={el}
@@ -170,6 +170,25 @@ export function Player() {
                             {user?.gender}
                           </Typography>
                         </td>
+
+                        <td className={className}>
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-bold"
+                          >
+                            {user?.department}
+                          </Typography>
+                        </td>
+                        <td className={className}>
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-bold"
+                          >
+                            {user?.team}
+                          </Typography>
+                        </td>
                         <td className={className}>
                           <div className="flex w-10/12 gap-2">
                             <IconButton variant="text" onClick={()=>navigate("/player/1")}>
@@ -216,6 +235,21 @@ export function Player() {
                 <Option value="MALE" >Male</Option>
                 <Option value="FEMALE">Female</Option>
               </Select>
+              <Select label="province/department" onChange={(value)=>handleChange({target:{name: "",value}})}>
+                <Option value="MALE" >Punjab</Option>
+                <Option value="FEMALE">Sindh</Option>
+                <Option value="MALE" >KPK</Option>
+                <Option value="FEMALE">Balohistain</Option>
+                <Option value="MALE" >Islambad</Option>
+                <Option value="FEMALE">Wapda</Option>
+                <Option value="MALE" >Army</Option>
+                <Option value="FEMALE">Police</Option>
+                <Option value="MALE" >HEC</Option>
+                <Option value="FEMALE">Railways</Option>
+              
+
+              </Select>
+              <Input label="team" size="lg" type="text" name="team" onChange={handleChange} />
             <Input label="Password" size="lg" type="password" name="password" onChange={handleChange} />
           </CardBody>
           <CardFooter className="pt-0">
