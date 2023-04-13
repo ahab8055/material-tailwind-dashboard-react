@@ -122,7 +122,7 @@ export function Player() {
               </thead>
               <tbody>
                 {playerList.map(
-                  ({ pkfId, _id, name, totalMatches, user, completion }, key) => {
+                  ({ pkfId, _id, name, totalMatches, user, department, team }, key) => {
                     const className = `py-3 px-5 ${
                       key === projectsTableData.length - 1
                         ? ""
@@ -177,7 +177,7 @@ export function Player() {
                             color="blue-gray"
                             className="font-bold"
                           >
-                            {user?.department}
+                            {department}
                           </Typography>
                         </td>
                         <td className={className}>
@@ -186,7 +186,7 @@ export function Player() {
                             color="blue-gray"
                             className="font-bold"
                           >
-                            {user?.team}
+                            {team}
                           </Typography>
                         </td>
                         <td className={className}>
@@ -235,19 +235,17 @@ export function Player() {
                 <Option value="MALE" >Male</Option>
                 <Option value="FEMALE">Female</Option>
               </Select>
-              <Select label="province/department" onChange={(value)=>handleChange({target:{name: "",value}})}>
-                <Option value="MALE" >Punjab</Option>
-                <Option value="FEMALE">Sindh</Option>
-                <Option value="MALE" >KPK</Option>
-                <Option value="FEMALE">Balohistain</Option>
-                <Option value="MALE" >Islambad</Option>
-                <Option value="FEMALE">Wapda</Option>
-                <Option value="MALE" >Army</Option>
-                <Option value="FEMALE">Police</Option>
-                <Option value="MALE" >HEC</Option>
-                <Option value="FEMALE">Railways</Option>
-              
-
+              <Select label="province/department" onChange={(value)=>handleChange({target:{name: "department",value}})}>
+                <Option value="Punjab" >Punjab</Option>
+                <Option value="Sindh">Sindh</Option>
+                <Option value="KPK" >KPK</Option>
+                <Option value="Balochistan">Balochistan</Option>
+                <Option value="Islamabad" >Islamabad</Option>
+                <Option value="Wapda">Wapda</Option>
+                <Option value="Army" >Army</Option>
+                <Option value="Police">Police</Option>
+                <Option value="HEC" >HEC</Option>
+                <Option value="Railways">Railways</Option>
               </Select>
               <Input label="team" size="lg" type="text" name="team" onChange={handleChange} />
             <Input label="Password" size="lg" type="password" name="password" onChange={handleChange} />
