@@ -74,7 +74,7 @@ export function PlayerDetail() {
             </div>
           </div>
           <div className="gird-cols-1 mb-12 grid gap-12 px-4 lg:grid-cols-2 xl:grid-cols-3">
-            <div>
+            {/* <div>
               <Typography variant="h6" color="blue-gray" className="mb-3">
                 Platform Settings
               </Typography>
@@ -97,25 +97,25 @@ export function PlayerDetail() {
                         />
                       ))}
                     </div>
-                  </div>
-                ))}
+                  </div> */}
+                {/* ))}
               </div>
-            </div>
+            </div> */}
             <ProfileInfoCard
               title="Profile Information"
               description="Hi, I'm Alec Thompson, Decisions: If you can't decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality)."
               details={{
-                "first name": "Alec M. Thompson",
-                mobile: "(44) 123 1234 123",
-                email: "alecthompson@mail.com",
-                location: "USA",
-                social: (
-                  <div className="flex items-center gap-4">
-                    <i className="fa-brands fa-facebook text-blue-700" />
-                    <i className="fa-brands fa-twitter text-blue-400" />
-                    <i className="fa-brands fa-instagram text-purple-500" />
-                  </div>
-                ),
+                "first name": "Amna Khalid",
+                mobile: "03454886789",
+                email: "amna@gmail.com",
+                Address: "tajpura road",
+                // social: (
+                //   <div className="flex items-center gap-4">
+                //     <i className="fa-brands fa-facebook text-blue-700" />
+                //     <i className="fa-brands fa-twitter text-blue-400" />
+                //     <i className="fa-brands fa-instagram text-purple-500" />
+                //   </div>
+                // ),
               }}
               action={
                 <Tooltip content="Edit Profile">

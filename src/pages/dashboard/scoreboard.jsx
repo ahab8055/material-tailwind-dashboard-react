@@ -42,8 +42,7 @@ export function Scoreboard() {
             <div className="mr-auto md:mr-0 md:w-56">
               <Select
                 label="Select Category"
-                className=""
-              >
+                className="">
                 <Option>Male</Option>
                 <Option>Female</Option>
               </Select>
@@ -156,7 +155,71 @@ export function Scoreboard() {
                   }
                 )}
               </tbody>
-            </table>
+            {/* </table><tbody>
+                {projectsTableData.map(
+                  ({ img, name, members, budget, completion }, key) => {
+                    const className = `py-3 px-5 ${
+                      key === projectsTableData.length - 1
+                        ? ""
+                        : "border-b border-blue-gray-50"
+                    }`;
+
+                    return (
+                      <tr key={name}>
+                        <td className={className}>
+                          <div className="flex items-center gap-4">
+                            {/* <Avatar src={img} alt={name} size="sm" /> */}
+                            {/* <Typography
+                              variant="small"
+                              color="blue-gray"
+                              className="font-bold"
+                            >
+                              - 60 kg
+                            </Typography>
+                          </div>
+                        </td>
+                        <td className={className}>
+                          {members.map(({ img, name }, key) => (
+                            <Tooltip key={name} content={name}>
+                              <Avatar
+                                src={img}
+                                alt={name}
+                                size="xs"
+                                variant="circular"
+                                className={`cursor-pointer border-2 border-white ${
+                                  key === 0 ? "" : "-ml-5"
+                                }`}
+                              />
+                            </Tooltip>
+                          ))}
+                        </td>
+                        <td className={className}>
+                          <Typography
+                            variant="small"
+                            className="text-xs font-medium text-blue-gray-600"
+                          >
+                            24/04/2023
+                          </Typography>
+                        </td>
+                        <td className={className}>
+                          <div className="flex w-10/12 gap-2">
+                            <IconButton variant="text">
+                              <EyeIcon className="h-5 w-5 text-inherit" />
+                            </IconButton>
+                            <IconButton variant="text">
+                              <PencilSquareIcon className="h-5 w-5 text-inherit" />
+                            </IconButton>
+                            <IconButton variant="text">
+                              <PlayCircleIcon className="h-5 w-5 text-inherit" />
+                            </IconButton>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  }
+                )}
+              </tbody> */}
+            </table> 
           </CardBody>
         </Card>
       </div>

@@ -25,6 +25,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { projectsTableData } from "@/data";
 
+
 export function Draws() {
   return (
     <div className="mt-12">
@@ -54,12 +55,13 @@ export function Draws() {
                 icon={<MagnifyingGlassIcon />}
               />
             </div>
-            <div className="mr-auto md:mr-0 md:w-56">
-              <Select label="Select Gender" className="">
+            <div className="mr-auto md:mr-0 md:w-56 flex flex-col w-72 gap-6">
+              <Select label="Select  Gender" className="" variant="static">
                 <Option>Male</Option>
                 <Option>Female</Option>
               </Select>
             </div>
+            
             <div className="mr-auto md:mr-4 md:w-56">
               <Select label="Select Type">
                 <Option>Kumite</Option>
@@ -70,9 +72,9 @@ export function Draws() {
               <Button variant="gradient" size="sm"> Add Draw</Button>
             </div>
           </CardHeader>
-          <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
-            <table className="w-full min-w-[640px] table-auto">
-              <thead>
+          <CardBody className="overflow-x-scroll px-0 pb-2 ">
+            <table className="w-full min-w-[640px] table-auto ">
+              <thead >
                 <tr>
                   {["weight category", "number of players", "action"].map(
                     (el) => (
@@ -91,10 +93,13 @@ export function Draws() {
                   )}
                 </tr>
               </thead>
-              <tbody>
+              <tbody >
+
                 {projectsTableData.map(
                   ({ img, name, members, budget, completion }, key) => {
-                    const className = `py-3 px-5 ${
+                    const className = `py-3 px-5 $
+                    {amna},
+                    {kahlid}{
                       key === projectsTableData.length - 1
                         ? ""
                         : "border-b border-blue-gray-50"
@@ -110,7 +115,7 @@ export function Draws() {
                               color="blue-gray"
                               className="font-bold"
                             >
-                              Al-Kabir Punjab Karate League
+                             60
                             </Typography>
                           </div>
                         </td>
@@ -120,7 +125,7 @@ export function Draws() {
                             color="blue-gray"
                             className="font-bold"
                           >
-                            16
+                            78
                           </Typography>
                         </td>
                         <td className={className}>
@@ -165,6 +170,11 @@ export function Draws() {
           </CardBody>
         </Card>
       </div>
+      
+  <div>
+  
+  </div>
+  
     </div>
   );
 }

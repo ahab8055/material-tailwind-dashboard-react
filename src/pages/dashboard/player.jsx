@@ -197,7 +197,7 @@ export function Player() {
                             <IconButton variant="text">
                               <PencilSquareIcon className="h-5 w-5 text-inherit" />
                             </IconButton>
-                            <IconButton variant="text">
+                            <IconButton variant="text" onClick={()=>navigate("/profile/1")}>
                               <TrashIcon className="h-5 w-5 text-inherit" />
                             </IconButton>
                           </div>

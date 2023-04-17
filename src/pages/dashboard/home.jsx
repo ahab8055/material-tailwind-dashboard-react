@@ -5,6 +5,7 @@ import {
   CardBody,
   Button,
   CardFooter,
+  Tooltip,
   TabsHeader,
   Tab,
   Tabs,
@@ -16,7 +17,9 @@ import {
   PencilIcon,
   ArrowUpIcon,
 } from "@heroicons/react/24/solid";
+import Draws from "./draws";
 export function Home() {
+  
   return (
     <div className="mt-12">
       <div className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3">
@@ -41,12 +44,16 @@ export function Home() {
                   </div>
                 </div>
                 <div className="font-inter flex flex-row items-start justify-start gap-[39.82px] text-[15.54px]">
+               
                   <Button variant="outlined" size="sm" color="red">
                     New Tournament
                   </Button>
-                  <Button variant="outlined" size="sm" color="drak-blue">
+            
+                  <Button  variant="outlined" size="sm" color="drak-blue">
                     View features
                   </Button>
+                  
+                
                 </div>
               </div>
               <div className="flex flex-row items-start justify-start">
@@ -61,7 +68,7 @@ export function Home() {
         </Card>
       </div>
       {/* <div className="mt-6 grid  gap-12 md:grid-cols-2 xl:grid-cols-3">
-        {projectsData.map(
+        {projectsData.map(  
           ({ img, title, description, tag, route, members }) => (
             <Card key={title} color="transparent" shadow={false}>
               <CardBody className="py-0 px-1">
@@ -96,8 +103,8 @@ export function Home() {
         )}
       </div> */}
       <div className="container flex">
-  <div className="item" >
-    <CardBody color="pink" shadow={true} className="py-0 px-1" >
+  <div className="item mx-auto p-10 border-solid border-2 border-blue-gray-600  rounded-lg  transition ease-in-out delay-150 bg-grey-500 hover:-translate-y-1 hover:scale-80  duration-300 " >
+    <CardBody color="pink" shadow={true} className="py-0 px-1 " >
                 <Typography
                   variant="small"
                   className="font-normal text-blue-gray-500"
@@ -119,11 +126,37 @@ export function Home() {
                 </Typography>
               </CardBody>
               <CardFooter className="mt-6 flex items-center justify-between py-0 px-1">
-                  <Button variant="outlined" size="sm">
-                    Results
-                  </Button>
+              <Tooltip content="View result" placement="right-end" color="pink">
+                  <Button variant="outlined" size="sm">Results</Button>
+                  </Tooltip> 
               </CardFooter></div>
-  <div className="item"><CardBody className="py-0 px-1">
+  <div className="mx-auto p-10 border-solid border-2 border-blue-gray-600 rounded-lg  transition ease-in-out delay-150 bg-grey-500 hover:-translate-y-1 hover:scale-80  duration-300  "><CardBody className="py-0 px-1">
+                <Typography
+                  variant="small"
+                  className="font-normal text-blue-gray-500"
+                >
+                  Tournament 
+                </Typography>
+                <Typography
+                  variant="h5"
+                  color="blue-gray"
+                  className="mt-1 mb-2 "
+                >
+                  Army
+                </Typography>
+                <Typography
+                  variant="small"
+                  className="font-normal text-blue-gray-500"
+                >
+                  25-03-2023 | Punjab
+                </Typography>
+              </CardBody>
+              <CardFooter className="mt-6 flex items-center justify-between py-0 px-1">
+              <Tooltip content="View result" placement="right-end" color="pink">
+                  <Button variant="outlined" size="sm">Results</Button>
+                  </Tooltip> 
+              </CardFooter></div>
+  <div className="item mx-auto p-10 border-solid border-2 border-blue-gray-600 rounded-lg  transition ease-in-out delay-150 bg-grey-500 hover:-translate-y-1 hover:scale-80  duration-300 "><CardBody className="py-0 px-1">
                 <Typography
                   variant="small"
                   className="font-normal text-blue-gray-500"
@@ -135,7 +168,7 @@ export function Home() {
                   color="blue-gray"
                   className="mt-1 mb-2"
                 >
-                  Al-KAbir Punjab Karate League 
+                 Punjab
                 </Typography>
                 <Typography
                   variant="small"
@@ -145,35 +178,9 @@ export function Home() {
                 </Typography>
               </CardBody>
               <CardFooter className="mt-6 flex items-center justify-between py-0 px-1">
-                  <Button variant="outlined" size="sm">
-                    Results
-                  </Button>
-              </CardFooter></div>
-  <div className="item"><CardBody className="py-0 px-1">
-                <Typography
-                  variant="small"
-                  className="font-normal text-blue-gray-500"
-                >
-                  Tournament 
-                </Typography>
-                <Typography
-                  variant="h5"
-                  color="blue-gray"
-                  className="mt-1 mb-2"
-                >
-                  Al-KAbir Punjab Karate League 
-                </Typography>
-                <Typography
-                  variant="small"
-                  className="font-normal text-blue-gray-500"
-                >
-                  25-03-2023 | Punjab
-                </Typography>
-              </CardBody>
-              <CardFooter className="mt-6 flex items-center justify-between py-0 px-1">
-                  <Button variant="outlined" size="sm">
-                    Results
-                  </Button>
+              <Tooltip content="View result" placement="right-end" color="pink">
+                  <Button variant="outlined" size="sm">Results</Button>
+                  </Tooltip> 
               </CardFooter></div>
 </div>
 {/* <div className="w-96">
