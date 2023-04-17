@@ -115,7 +115,17 @@ export function Draws() {
                               color="blue-gray"
                               className="font-bold"
                             >
-                             60
+                            <div className="mr-auto md:mr-0 md:w-56 flex flex-col w-72 gap-6">
+              <Select  className="">
+                <Option>-50KG</Option>
+                <Option>-55KG</Option>
+                <Option>-60KG</Option>
+                <Option>-67KG</Option>
+                <Option>-75KG</Option>
+                <Option>-84KG</Option>
+                <Option>+84KG</Option>
+              </Select>
+            </div>
                             </Typography>
                           </div>
                         </td>
@@ -125,7 +135,22 @@ export function Draws() {
                             color="blue-gray"
                             className="font-bold"
                           >
-                            78
+                            <div className="mr-auto md:mr-0 md:w-56 flex flex-col w-72 gap-3">
+              <Select  className="">
+                <Option>5</Option>
+                <Option>6</Option>
+                <Option>7</Option>
+                <Option>8</Option>
+                <Option>9</Option>
+                <Option>10</Option>
+                <Option>11</Option>
+                <Option>12</Option>
+                <Option>13</Option>
+                <Option>14</Option>
+                <Option>15</Option>
+                <Option>16</Option>
+              </Select>
+            </div>
                           </Typography>
                         </td>
                         <td className={className}>

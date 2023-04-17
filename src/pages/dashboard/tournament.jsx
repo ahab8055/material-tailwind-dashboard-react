@@ -33,7 +33,7 @@ export function Tournament() {
             </Select>
             <Select label="Select Type">
                 <Option>Kata</Option>
-                <Option>Kamite</Option>
+                <Option>Kumite</Option>
             </Select>
           </CardBody>
           <CardFooter className="pt-0">
