@@ -15,16 +15,24 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@material-tailwind/react";
 import { MaterialTailwindControllerProvider } from "@/context";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+import store from "@/redux/store";
 import "../public/css/tailwind.css";
+import { Provider } from "react-redux";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider>
-        <MaterialTailwindControllerProvider>
-          <App />
-        </MaterialTailwindControllerProvider>
-      </ThemeProvider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistStore(store)}>
+        <BrowserRouter>
+          <ThemeProvider>
+            <MaterialTailwindControllerProvider>
+              <App />
+            </MaterialTailwindControllerProvider>
+          </ThemeProvider>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );

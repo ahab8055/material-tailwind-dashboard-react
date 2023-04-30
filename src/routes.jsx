@@ -1,3 +1,4 @@
+import React from "react";
 import {
   HomeIcon,
   ChartBarSquareIcon,
@@ -64,24 +65,6 @@ export const routes = [
         path: "/player",
         element: <Player />,
       },
-      // {
-      //   icon: <UserCircleIcon {...icon} />,
-      //   name: "profile",
-      //   path: "/profile",
-      //   element: <Profile />,
-      // },
-      // {
-      //   icon: <TableCellsIcon {...icon} />,
-      //   name: "tables",
-      //   path: "/tables",
-      //   element: <Tables />,
-      // },
-      // {
-      //   icon: <BellIcon {...icon} />,
-      //   name: "notifactions",
-      //   path: "/notifactions",
-      //   element: <Notifications />,
-      // },
     ],
   },
   {

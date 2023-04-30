@@ -1,3 +1,4 @@
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import { IconButton } from "@material-tailwind/react";
@@ -39,7 +40,7 @@ export function Dashboard() {
             ({ layout, pages }) =>
               layout === "dashboard" &&
               pages.map(({ path, element }) => (
-                <Route exact path={path} element={element} />
+                <Route exact path={path} element={element} key={path} />
               ))
           )}
         </Routes>

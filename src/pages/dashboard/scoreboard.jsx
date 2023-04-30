@@ -93,7 +93,7 @@ export function Scoreboard() {
               </thead>
               <tbody>
                 {projectsTableData.map(
-                  ({ img, name, members, budget, completion }, key) => {
+                  ({ name, members }, key) => {
                     const className = `py-3 px-5 ${
                       key === projectsTableData.length - 1
                         ? ""

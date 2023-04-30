@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -9,19 +10,16 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Login } from "@/redux/slices/auth-slice";
 
 export function SignIn() {
   const [data, setData] = useState();
+  const dispatch = useDispatch();
 
   const handleSignIn = () =>{
-    axios.post("http://localhost:4000/v1/auth/sign-in",data).then(res=>{
-      localStorage.setItem('token',res.data.token);
-      window.location.reload();
-    }).catch(err=>{
-      console.log(err)
-    })
+    dispatch(Login(data))
   }
 
   const handleChange = (event) =>{
@@ -59,7 +57,7 @@ export function SignIn() {
               Sign In
             </Button>
             <Typography variant="small" className="mt-6 flex justify-center">
-              Don't have an account?
+              Don&lsquo;t have an account?
               <Link to="/auth/sign-up">
                 <Typography
                   as="span"

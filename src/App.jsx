@@ -1,20 +1,15 @@
+import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Dashboard, Auth } from "@/layouts";
 import PlayerDetail from "./pages/dashboard/playerDetail";
-import { useEffect, useState } from "react";
 import "./style.css"
+import { useSelector } from "react-redux";
 
 function App() {
-  const [token, setToken] = useState();
-
-  useEffect(() => {
-    let token = localStorage.getItem("token");
-    setToken(token);
-  }, []);
-
+  const { isSignIn } = useSelector(store=>store.auth)
   return (
     <Routes>
-      {!token ? (
+      {!isSignIn ? (
         <>
           <Route path="/auth/*" element={<Auth />} />
           <Route path="*" element={<Navigate to="/auth/sign-in" replace />} />

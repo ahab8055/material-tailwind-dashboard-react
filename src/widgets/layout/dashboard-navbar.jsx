@@ -1,3 +1,4 @@
+import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import {
   Navbar,
@@ -25,17 +26,15 @@ import {
   setOpenConfigurator,
   setOpenSidenav,
 } from "@/context";
+import { useDispatch } from "react-redux";
+import { LogOut } from "@/redux/slices/auth-slice";
 
 export function DashboardNavbar() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { fixedNavbar, openSidenav } = controller;
   const { pathname } = useLocation();
   const [layout, page] = pathname.split("/").filter((el) => el !== "");
-
-  const handleLogout = () =>{
-    localStorage.removeItem('token');
-    window.location.reload();
-  }
+  const reduxDispatch = useDispatch();
 
   return (
     <Navbar
@@ -92,7 +91,7 @@ export function DashboardNavbar() {
               variant="text"
               color="blue-gray"
               className="hidden items-center gap-1 px-4 xl:flex"
-              onClick={handleLogout}
+              onClick={()=>reduxDispatch(LogOut())}
             >
               Logout
             </Button>
