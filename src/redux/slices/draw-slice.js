@@ -4,10 +4,10 @@ import { axiosBaseUrl } from "@/configs/axios-config";
 
 const axios = axiosBaseUrl();
 
-export const GetTournament = createAsyncThunk(
-  "tournament/GetTournament", async (params, thunkAPI) => {
+export const GetDraws = createAsyncThunk(
+  "draw/GetDraws", async (params, thunkAPI) => {
   try {
-    const { data } = await axios.get("/tournament",{ params });
+    const { data } = await axios.get("/draw",{ params });
     return data;
   } catch (err) {
     if (err.response && err.response.data) {
@@ -24,10 +24,10 @@ export const GetTournament = createAsyncThunk(
   }
 });
 
-export const AddTournament = createAsyncThunk(
-  "tournament/AddTournament", async (payload, thunkAPI) => {
+export const AddDraw = createAsyncThunk(
+  "draw/AddDraw", async (payload, thunkAPI) => {
   try {
-    const { data } = await axios.post("/tournament", payload);
+    const { data } = await axios.post("/draw", payload);
     return data;
   } catch (err) {
     if (err.response && err.response.data) {
@@ -44,44 +44,44 @@ export const AddTournament = createAsyncThunk(
   }
 });
 
-const tournament = createSlice({
-  name: "tournament",
+const draw = createSlice({
+  name: "draw",
   initialState: {
-    tournaments: [],
+    draws: [],
     message: "",
     err: "",
     success: false,
     loading: false,
   },
   reducers: {
-    SetTournamentState(state, { payload: { field, value } }) {
+    SetDrawState(state, { payload: { field, value } }) {
       state[field] = value;
     },
   },
   extraReducers: {
-    [GetTournament.pending]: (state) => ({
+    [GetDraws.pending]: (state) => ({
       ...state,
       loading: true,
     }),
-    [GetTournament.fulfilled]: (state, action) => {
-      state.tournaments = action.payload.tournaments;
+    [GetDraws.fulfilled]: (state, action) => {
+      state.draws = action.payload.draws;
       state.loading = false;
     },
-    [GetTournament.rejected]: (state, action) => ({
+    [GetDraws.rejected]: (state, action) => ({
       ...state,
       err: action.payload.err?.error,
       loading: false,
     }),
-    [AddTournament.pending]: (state) => ({
+    [AddDraw.pending]: (state) => ({
       ...state,
       loading: true,
     }),
-    [AddTournament.fulfilled]: (state, action) => {
+    [AddDraw.fulfilled]: (state, action) => {
       state.message = action.payload?.message;
       state.success = true;
       state.loading = false;
     },
-    [AddTournament.rejected]: (state, action) => ({
+    [AddDraw.rejected]: (state, action) => ({
       ...state,
       err: action.payload.err?.error,
       loading: false,
@@ -89,8 +89,8 @@ const tournament = createSlice({
   },
 });
 
-const { reducer, actions } = tournament;
+const { reducer, actions } = draw;
 
-export const { SetTournamentState } = actions;
+export const { SetDrawState } = actions;
 
 export default reducer;

@@ -26,10 +26,13 @@ import {
   SetTournamentState,
 } from "@/redux/slices/tournament-slice";
 import Notification from "@/widgets/layout/notification";
+import { debounce } from "lodash";
+import { toast } from "react-hot-toast";
 
 export function Tournament() {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState({});
+  const [filters,setFilters] = useState({});
   const handleOpen = () => setOpen((cur) => !cur);
   const { tournaments, success, err, message } = useSelector(
     (store) => store.tournament
@@ -51,28 +54,32 @@ export function Tournament() {
     setData({ ...data, [name]: value });
   };
 
+  const handleSearch = debounce((value) => {
+    if(value !== "") {
+    setFilters((prev) => ({
+      ...prev,
+      search: value,
+    }));
+  } else {
+    setFilters({});
+  }
+  }, 500);
+
   useEffect(() => {
-    dispatch(GetTournament());
-  }, []);
+    dispatch(GetTournament(filters));
+  }, [filters]);
 
   useEffect(() => {
     if (err) {
-      setNotification({
-        open: true,
-        message: err,
-        type: "error",
-      });
+      toast.error(err);
       dispatch(SetTournamentState({ field: "err", value: "" }));
+      setOpen(false);
     }
 
     if (success) {
       setOpen(false);
       dispatch(GetTournament());
-      setNotification({
-        open: true,
-        message: message,
-        type: "success",
-      });
+      toast.success(message);
       dispatch(SetTournamentState({ field: "success", value: false }));
     }
   }, [err, success]);
@@ -102,6 +109,7 @@ export function Tournament() {
                   type="text"
                   label="Search Tournament"
                   icon={<MagnifyingGlassIcon />}
+                  onChange={(event) => handleSearch(event.target.value)}
                 />
               </div>
               <div className="mr-auto object-right md:mr-4 md:w-56">

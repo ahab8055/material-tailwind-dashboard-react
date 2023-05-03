@@ -1,35 +1,103 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Typography,
   Card,
   CardHeader,
   CardBody,
-  Avatar,
-  Tooltip,
   Select,
   Option,
   IconButton,
   Input,
-  Button
+  Button,
+  Dialog,
+  CardFooter,
 } from "@material-tailwind/react";
 import {
-  EyeIcon,
   PencilSquareIcon,
-  PlayCircleIcon,
-  MagnifyingGlassIcon,
-  AdjustmentsVerticalIcon,
   PrinterIcon,
-  DocumentTextIcon,
-  CheckIcon,
-  XMarkIcon
+  DocumentTextIcon
 } from "@heroicons/react/24/outline";
-import { projectsTableData } from "@/data";
-
+import AutoCompleteInput from "@/widgets/layout/autoCompleteInput";
+import { useDispatch, useSelector } from "react-redux";
+import { GetTournament } from "@/redux/slices/tournament-slice";
+import { toast } from "react-hot-toast";
+import { AddDraw, GetDraws, SetDrawState } from "@/redux/slices/draw-slice";
 
 export function Draws() {
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState({});
+  const [activeTournament, setActiveTournament] = useState("");
+  const handleOpen = () => setOpen((cur) => !cur);
+  const { tournaments } = useSelector((store) => store.tournament);
+  const { 
+    err, 
+    success, 
+    message, 
+    draws
+  } = useSelector((store) => store.draw);
+  const dispatch = useDispatch();
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setData({ ...data, [name]: value });
+  };
+
+  const handleSubmit = () => {
+    const tournamentId = tournaments.find(item=>item.name === activeTournament)?._id
+    const payload = {
+      tournamentId,
+      ...data
+    }
+    dispatch(AddDraw(payload));
+  };
+
+  useEffect(() => {
+    dispatch(GetTournament());
+  }, []);
+
+  useEffect(()=>{
+    if(activeTournament) {
+      const tournamentId = tournaments.find(item=>item.name === activeTournament)?._id
+      dispatch(GetDraws({ tournamentId }));
+    }
+  },[activeTournament])
+
+  useEffect(() => {
+    if (err) {
+      toast.error(err)
+      dispatch(SetDrawState({ field: "err", value: "" }));
+      setOpen(false);
+    }
+
+    if (success) {
+      setOpen(false);
+      const tournamentId = tournaments.find(item=>item.name === activeTournament)?._id
+      dispatch(GetDraws({ tournamentId }));
+      toast.success(message)
+      dispatch(SetDrawState({ field: "success", value: false }));
+    }
+  }, [err, success]);
+
   return (
     <div className="mt-12">
       <div className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3">
+        <div className="flex w-max gap-4">
+          <div className="md:w-64">
+            <AutoCompleteInput
+              options={tournaments?.map((item) => item.name ) || []}
+              placeholder="Search Tournament"
+              value={activeTournament}
+              onChange={(event,value)=>{
+                setActiveTournament(value )
+              }}
+            />
+          </div>
+          <div className="md:w-64">
+            <Button variant="gradient" size="sm" onClick={()=> activeTournament? handleOpen(): toast.error("Select a tournament to add draws")}>
+              Add Draw
+            </Button>
+          </div>
+        </div>
         <Card className="overflow-hidden xl:col-span-3">
           <CardHeader
             floated={false}
@@ -41,42 +109,13 @@ export function Draws() {
               <Typography variant="h6" color="blue-gray" className="mb-1">
                 Draws
               </Typography>
-              {/* <Typography
-                variant="small"
-                className="flex items-center gap-1 font-normal text-blue-gray-600"
-              >
-                <strong>30 Tournaments</strong>
-              </Typography> */}
-            </div>
-            <div className="md:w-74 mr-auto md:mr-0">
-              <Input
-                type="text"
-                label="Search Tournament"
-                icon={<MagnifyingGlassIcon />}
-              />
-            </div>
-            <div className="mr-auto md:mr-0 md:w-56 flex flex-col w-72 gap-6">
-              <Select label="Select  Gender" className="" variant="static">
-                <Option>Male</Option>
-                <Option>Female</Option>
-              </Select>
-            </div>
-            
-            <div className="mr-auto md:mr-4 md:w-56">
-              <Select label="Select Type">
-                <Option>Kumite</Option>
-                <Option>Kata</Option>
-              </Select>
-            </div>
-            <div className="mr-auto md:mr-4 md:w-56 text-end">
-              <Button variant="gradient" size="sm"> Add Draw</Button>
             </div>
           </CardHeader>
           <CardBody className="overflow-x-scroll px-0 pb-2 ">
             <table className="w-full min-w-[640px] table-auto ">
-              <thead >
+              <thead>
                 <tr>
-                  {["weight category", "number of players", "action"].map(
+                  {["weight category", "number of players","status", "action"].map(
                     (el) => (
                       <th
                         key={el}
@@ -93,113 +132,114 @@ export function Draws() {
                   )}
                 </tr>
               </thead>
-              <tbody >
+              <tbody>
+                {draws.map(({ weight, noOfPlayer, status, _id }, key) => {
 
-                {projectsTableData.map(
-                  ({ img, name, members, budget, completion }, key) => {
-                    const className = `py-3 px-5 $
-                    {amna},
-                    {kahlid}{
-                      key === projectsTableData.length - 1
-                        ? ""
-                        : "border-b border-blue-gray-50"
-                    }`;
+                  const className = `py-3 px-5 ${
+                    key === draws.length - 1
+                      ? ""
+                      : "border-b border-blue-gray-50"
+                  }`;
 
-                    return (
-                      <tr key={name}>
-                        <td className={className}>
-                          <div className="flex items-center gap-4">
-                            {/* <Avatar src={img} alt={name} size="sm" /> */}
-                            <Typography
-                              variant="small"
-                              color="blue-gray"
-                              className="font-bold"
-                            >
-                            <div className="mr-auto md:mr-0 md:w-56 flex flex-col w-72 gap-6">
-              <Select  className="">
-                <Option>-50KG</Option>
-                <Option>-55KG</Option>
-                <Option>-60KG</Option>
-                <Option>-67KG</Option>
-                <Option>-75KG</Option>
-                <Option>-84KG</Option>
-                <Option>+84KG</Option>
-              </Select>
-            </div>
-                            </Typography>
-                          </div>
-                        </td>
-                        <td className={className}>
+                  return (
+                    <tr key={_id}>
+                      <td className={className}>
+                        <div className="flex items-center gap-4">
                           <Typography
                             variant="small"
                             color="blue-gray"
                             className="font-bold"
                           >
-                            <div className="mr-auto md:mr-0 md:w-56 flex flex-col w-72 gap-3">
-              <Select  className="">
-                <Option>5</Option>
-                <Option>6</Option>
-                <Option>7</Option>
-                <Option>8</Option>
-                <Option>9</Option>
-                <Option>10</Option>
-                <Option>11</Option>
-                <Option>12</Option>
-                <Option>13</Option>
-                <Option>14</Option>
-                <Option>15</Option>
-                <Option>16</Option>
-              </Select>
-            </div>
+                            {weight} kg
                           </Typography>
-                        </td>
-                        <td className={className}>
-                          <div className="flex w-10/12 gap-2">
-                            <IconButton variant="text">
-                              <DocumentTextIcon className="h-5 w-5 text-inherit" />
-                            </IconButton>
-                            <IconButton variant="text">
-                              <PencilSquareIcon className="h-5 w-5 text-inherit" />
-                            </IconButton>
-                            <IconButton variant="text">
-                              <PrinterIcon className="h-5 w-5 text-inherit" />
-                            </IconButton>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  }
-                )}
-                <tr>
-                  <td className="border-b border-blue-gray-50 py-3 px-5">
-                    <div className="flex items-center gap-4">
-                      <Input label="Weight Category" variant="standard" />
-                    </div>
-                  </td>
-                  <td className="border-b border-blue-gray-50 py-3 px-5">
-                    <Input label="Number of Players" variant="standard" />
-                  </td>
-                  <td className="border-b border-blue-gray-50 py-3 px-5">
-                    <div className="flex w-10/12 gap-2">
-                      <IconButton variant="text">
-                        <CheckIcon className="h-5 w-5 text-inherit" />
-                      </IconButton>
-                      <IconButton variant="text">
-                        <XMarkIcon className="h-5 w-5 text-inherit" />
-                      </IconButton>
-                    </div>
-                  </td>
-                </tr>
+                        </div>
+                      </td>
+                      <td className={className}>
+                        <div className="flex items-center gap-4">
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-bold"
+                          >
+                            {noOfPlayer}
+                          </Typography>
+                        </div>
+                      </td>
+                      <td className={className}>
+                        <div className="flex items-center gap-4">
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-bold"
+                          >
+                            {status}
+                          </Typography>
+                        </div>
+                      </td>
+                      <td className={className}>
+                        <div className="flex w-10/12 gap-2">
+                          <IconButton variant="text">
+                            <DocumentTextIcon className="h-5 w-5 text-inherit" />
+                          </IconButton>
+                          <IconButton variant="text">
+                            <PencilSquareIcon className="h-5 w-5 text-inherit" />
+                          </IconButton>
+                          <IconButton variant="text">
+                            <PrinterIcon className="h-5 w-5 text-inherit" />
+                          </IconButton>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </CardBody>
         </Card>
       </div>
-      
-  <div>
-  
-  </div>
-  
+      <Dialog
+        open={open}
+        handler={handleOpen}
+        className="bg-transparent shadow-none"
+      >
+        <Card className="mx-auto h-full w-full">
+          <CardHeader
+            variant="gradient"
+            color="blue"
+            className="mb-4 grid h-24 place-items-center"
+          >
+            <Typography variant="h3" color="white">
+              Add Draws
+            </Typography>
+          </CardHeader>
+          <CardBody className="flex flex-col gap-4 h-72">
+            <Select
+              label="Select Weight"
+              onChange={(value) =>
+                handleChange({ target: { value, name: "weight" } })
+              }
+            >
+              <Option value="-50">-50KG</Option>
+              <Option value="-55">-55KG</Option>
+              <Option value="-60">-60KG</Option>
+              <Option value="-65">-65KG</Option>
+              <Option value="-75">-75KG</Option>
+              <Option value="-84">-84KG</Option>
+              <Option value="+84">+84KG</Option>
+            </Select>
+            <Input
+              label="Number of Player"
+              name="noOfPlayer"
+              onChange={handleChange}
+            />
+          </CardBody>
+          <CardFooter className="pt-0">
+            <Button variant="gradient" onClick={handleSubmit} fullWidth>
+              Add Player
+            </Button>
+          </CardFooter>
+        </Card>
+      </Dialog>
     </div>
   );
 }

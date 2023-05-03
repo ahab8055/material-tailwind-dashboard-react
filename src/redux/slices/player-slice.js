@@ -5,9 +5,9 @@ import { axiosBaseUrl } from "@/configs/axios-config";
 const axios = axiosBaseUrl();
 
 export const GetPlayers = createAsyncThunk(
-  "player/GetPlayers", async (_, thunkAPI) => {
+  "player/GetPlayers", async (params, thunkAPI) => {
   try {
-    const { data } = await axios.get("/player");
+    const { data } = await axios.get("/player",{ params });
     return data;
   } catch (err) {
     if (err.response && err.response.data) {

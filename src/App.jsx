@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Dashboard, Auth } from "@/layouts";
 import PlayerDetail from "./pages/dashboard/playerDetail";
 import "./style.css"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setAuthToken } from "./configs/axios-config";
+import { LogOut } from "./redux/slices/auth-slice";
 
 function App() {
-  const { isSignIn } = useSelector(store=>store.auth)
+  const { isSignIn, token } = useSelector(store=>store.auth);
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    if(token) {
+      setAuthToken(token);
+    } else {
+      dispatch(LogOut())
+    }
+  },[])
   return (
     <Routes>
       {!isSignIn ? (

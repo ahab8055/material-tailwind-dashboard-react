@@ -20,6 +20,7 @@ import { persistStore } from "redux-persist";
 import store from "@/redux/store";
 import "../public/css/tailwind.css";
 import { Provider } from "react-redux";
+import { Toaster } from "react-hot-toast";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -29,6 +30,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <ThemeProvider>
             <MaterialTailwindControllerProvider>
               <App />
+              <Toaster position="top-center" reverseOrder={false} />
             </MaterialTailwindControllerProvider>
           </ThemeProvider>
         </BrowserRouter>

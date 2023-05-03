@@ -7,6 +7,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import authSlice from '@/redux/slices/auth-slice';
 import playerSlice from '@/redux/slices/player-slice';
 import tournamentSlice from '@/redux/slices/tournament-slice';
+import drawSlice from '@/redux/slices/draw-slice';
 
 const persistConfig = {
   key: 'root',
@@ -17,7 +18,8 @@ const persistConfig = {
 const reducers = combineReducers({
   auth: authSlice,
   player: playerSlice,
-  tournament: tournamentSlice
+  tournament: tournamentSlice,
+  draw: drawSlice
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
