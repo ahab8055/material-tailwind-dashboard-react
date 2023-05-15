@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { Footer } from "@/widgets/layout";
-import routes from "@/routes";
+import { Footer } from "../widgets/layout";
+import routes from "../routes";
 
 export function Auth() {
   return (

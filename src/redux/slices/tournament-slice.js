@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { axiosBaseUrl } from "@/configs/axios-config";
+import { axiosBaseUrl } from "../../configs/axios-config";
 
 const axios = axiosBaseUrl();
 

@@ -15,7 +15,7 @@ import {
   PencilSquareIcon,
   PlayCircleIcon
 } from "@heroicons/react/24/outline";
-import { projectsTableData } from "@/data";
+import { projectsTableData } from "../../data";
 
 export function Scoreboard() {
   return (

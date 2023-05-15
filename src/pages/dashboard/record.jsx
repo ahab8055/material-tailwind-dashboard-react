@@ -4,21 +4,15 @@ import {
   Card,
   CardHeader,
   CardBody,
-  Avatar,
-  Tooltip,
-  Select,
-  Option,
   IconButton,
   Input
 } from "@material-tailwind/react";
 import {
-  EyeIcon,
   PencilSquareIcon,
-  PlayCircleIcon,
   MagnifyingGlassIcon,
   AdjustmentsVerticalIcon
 } from "@heroicons/react/24/outline";
-import { projectsTableData } from "@/data";
+import { projectsTableData } from "../../data";
 
 export function Record() {
   return (
@@ -69,7 +63,7 @@ export function Record() {
               </thead>
               <tbody>
                 {projectsTableData.map(
-                  ({ img, name, members, budget, completion }, key) => {
+                  ({ name }, key) => {
                     const className = `py-3 px-5 ${
                       key === projectsTableData.length - 1
                         ? ""

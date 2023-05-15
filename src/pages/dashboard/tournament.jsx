@@ -24,8 +24,8 @@ import {
   AddTournament,
   GetTournament,
   SetTournamentState,
-} from "@/redux/slices/tournament-slice";
-import Notification from "@/widgets/layout/notification";
+} from "../../redux/slices/tournament-slice";
+import Notification from "../../widgets/layout/notification";
 import { debounce } from "lodash";
 import { toast } from "react-hot-toast";
 

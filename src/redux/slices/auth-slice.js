@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { axiosBaseUrl, setAuthToken } from '@/configs/axios-config';
+import { axiosBaseUrl, setAuthToken } from '../../configs/axios-config';
 
 const axios = axiosBaseUrl();
 

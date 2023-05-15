@@ -17,11 +17,11 @@ import {
   PrinterIcon,
   DocumentTextIcon
 } from "@heroicons/react/24/outline";
-import AutoCompleteInput from "@/widgets/layout/autoCompleteInput";
+import AutoCompleteInput from "../../widgets/layout/autoCompleteInput";
 import { useDispatch, useSelector } from "react-redux";
-import { GetTournament } from "@/redux/slices/tournament-slice";
+import { GetTournament } from "../../redux/slices/tournament-slice";
 import { toast } from "react-hot-toast";
-import { AddDraw, GetDraws, SetDrawState } from "@/redux/slices/draw-slice";
+import { AddDraw, GetDraws, SetDrawState } from "../../redux/slices/draw-slice";
 
 export function Draws() {
   const [open, setOpen] = useState(false);

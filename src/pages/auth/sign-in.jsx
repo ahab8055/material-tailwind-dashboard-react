@@ -12,7 +12,7 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Login } from "@/redux/slices/auth-slice";
+import { Login } from "../../redux/slices/auth-slice";
 
 export function SignIn() {
   const [data, setData] = useState();

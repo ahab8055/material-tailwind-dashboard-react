@@ -24,7 +24,7 @@ import {
   AddPlayer,
   GetPlayers,
   SetPlayerState,
-} from "@/redux/slices/player-slice";
+} from "../../redux/slices/player-slice";
 import { debounce } from "lodash";
 import { toast } from "react-hot-toast";
 

@@ -11,11 +11,11 @@ import {
 import { 
   Home,
   Scoreboard, 
-} from "@/pages/dashboard";
+} from "./pages/dashboard";
 import { 
   SignIn, 
   SignUp 
-} from "@/pages/auth";
+} from "./pages/auth";
 import Player from "./pages/dashboard/player";
 import Record from "./pages/dashboard/record";
 import Draws from "./pages/dashboard/draws";

@@ -25,9 +25,9 @@ import {
   useMaterialTailwindController,
   setOpenConfigurator,
   setOpenSidenav,
-} from "@/context";
+} from "../../context";
 import { useDispatch } from "react-redux";
-import { LogOut } from "@/redux/slices/auth-slice";
+import { LogOut } from "../../redux/slices/auth-slice";
 
 export function DashboardNavbar() {
   const [controller, dispatch] = useMaterialTailwindController();

@@ -4,10 +4,10 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
-import authSlice from '@/redux/slices/auth-slice';
-import playerSlice from '@/redux/slices/player-slice';
-import tournamentSlice from '@/redux/slices/tournament-slice';
-import drawSlice from '@/redux/slices/draw-slice';
+import authSlice from './slices/auth-slice';
+import playerSlice from './slices/player-slice';
+import tournamentSlice from './slices/tournament-slice';
+import drawSlice from './slices/draw-slice';
 
 const persistConfig = {
   key: 'root',
